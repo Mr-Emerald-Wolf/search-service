@@ -100,8 +100,8 @@ export function CandidateForm({ initialData, isEditMode = false }: CandidateForm
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true)
     try {
-      if (isEditMode && initialData?.id) {
-        await updateCandidate(initialData.id, values)
+      if (isEditMode && initialData?._id) {
+        await updateCandidate(initialData._id, values)
       } else {
         await createCandidate(values as CandidateInterface)
       }

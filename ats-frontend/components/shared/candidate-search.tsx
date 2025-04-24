@@ -16,7 +16,7 @@ import { mockSkills, mockLocations } from "@/lib/mock-data"
 
 type FilterType = {
   skills: string[]
-  locations: string[]
+  currentLocation: string[]
   relocate?: boolean
   remoteWork?: boolean
 }
@@ -28,7 +28,7 @@ export function CandidateSearch() {
   const [loading, setLoading] = useState(false)
   const [filters, setFilters] = useState<FilterType>({
     skills: [],
-    locations: [],
+    currentLocation: [],
   })
   const [activeFiltersCount, setActiveFiltersCount] = useState(0)
 
@@ -55,7 +55,7 @@ export function CandidateSearch() {
     // Count active filters
     let count = 0
     if (filters.skills.length > 0) count++
-    if (filters.locations.length > 0) count++
+    if (filters.currentLocation.length > 0) count++
     if (filters.relocate !== undefined) count++
     if (filters.remoteWork !== undefined) count++
     setActiveFiltersCount(count)
@@ -64,7 +64,7 @@ export function CandidateSearch() {
   const resetFilters = () => {
     setFilters({
       skills: [],
-      locations: [],
+      currentLocation: [],
       relocate: undefined,
       remoteWork: undefined,
     })
@@ -129,11 +129,11 @@ export function CandidateSearch() {
                   <Select
                     instanceId="filter-locations-select"
                     isMulti
-                    value={filters.locations.map((location) => ({ value: location, label: location }))}
+                    value={filters.currentLocation.map((location) => ({ value: location, label: location }))}
                     onChange={(options) =>
                       setFilters({
                         ...filters,
-                        locations: options.map((option) => option.value),
+                        currentLocation: options.map((option) => option.value),
                       })
                     }
                     options={locationOptions}
@@ -197,10 +197,10 @@ export function CandidateSearch() {
                 </button>
               </Badge>
             )}
-            {filters.locations.length > 0 && (
+            {filters.currentLocation.length > 0 && (
               <Badge variant="secondary" className="flex items-center gap-1">
-                Locations: {filters.locations.length}
-                <button onClick={() => setFilters({ ...filters, locations: [] })}>
+                Locations: {filters.currentLocation.length}
+                <button onClick={() => setFilters({ ...filters, currentLocation: [] })}>
                   <X className="h-3 w-3" />
                 </button>
               </Badge>
@@ -238,7 +238,7 @@ export function CandidateSearch() {
       ) : candidates.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {candidates.map((candidate) => (
-            <CandidateCard key={candidate.id} candidate={candidate} />
+            <CandidateCard key={candidate._id} candidate={candidate} />
           ))}
         </div>
       ) : (

@@ -74,7 +74,7 @@ export function JobCard({ job }: JobCardProps) {
             {new Date(job.closingDate).toLocaleDateString()}
           </span>
         </div>
-        <Link href={`/jobs/${job.id || "#"}`} passHref>
+        <Link href={`/jobs/${job._id || "#"}`} passHref>
           <Button size="sm" variant="outline">
             View Details
           </Button>

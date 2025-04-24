@@ -74,8 +74,8 @@ export function JobForm({ initialData, isEditMode = false }: JobFormProps) {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true)
     try {
-      if (isEditMode && initialData?.id) {
-        await updateJob(initialData.id, values)
+      if (isEditMode && initialData?._id) {
+        await updateJob(initialData._id, values)
       } else {
         await createJob(values as JobInterface)
       }

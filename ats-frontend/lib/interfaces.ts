@@ -1,5 +1,5 @@
 export interface CandidateInterface {
-  id?: string
+  _id?: string
   name: string
   email: string
   mobile: string
@@ -31,7 +31,7 @@ export interface CandidateInterface {
 }
 
 export interface JobInterface {
-  id?: string
+  _id?: string
   title: string
   description: string
   department: string

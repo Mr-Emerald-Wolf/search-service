@@ -15,7 +15,7 @@ const config: Config = {
   port: Number(process.env.PORT) || 3000,
   nodeEnv: process.env.NODE_ENV || "development",
   esuser: process.env.ES_USER || "elastic",
-  espassword: process.env.ES_PASSWORD || "changeme",
+  espassword: process.env.ES_PASSWORD || "7i4HmR0BF2=55Bsd5qgB",
   eshost: process.env.ES_HOST || "http://localhost:9200",
   rabbitmqUrl: process.env.RABBITMQ_URL || "amqp://localhost:5672"
 };

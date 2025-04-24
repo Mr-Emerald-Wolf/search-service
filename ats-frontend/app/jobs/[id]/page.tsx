@@ -40,7 +40,7 @@ export default function JobDetailPage() {
           // Load candidates attached to this job
           if (data.candidateIds && data.candidateIds.length > 0) {
             const allCandidates = await getCandidates()
-            const jobCandidates = allCandidates.filter((c) => data.candidateIds?.includes(c.id || ""))
+            const jobCandidates = allCandidates.filter((c) => data.candidateIds?.includes(c._id || ""))
             setCandidates(jobCandidates)
           }
         } else {
@@ -181,7 +181,7 @@ export default function JobDetailPage() {
               {candidates.length > 0 ? (
                 <div className="space-y-4">
                   {candidates.map((candidate) => (
-                    <div key={candidate.id} className="border rounded-md p-3 hover:bg-muted/50 transition-colors">
+                    <div key={candidate._id} className="border rounded-md p-3 hover:bg-muted/50 transition-colors">
                       <div className="font-medium">{candidate.name}</div>
                       <div className="text-sm text-muted-foreground">
                         {candidate.currentDesignation}
@@ -203,7 +203,7 @@ export default function JobDetailPage() {
                         variant="link"
                         size="sm"
                         className="p-0 h-auto mt-2"
-                        onClick={() => router.push(`/candidates/${candidate.id}`)}
+                        onClick={() => router.push(`/candidates/${candidate._id}`)}
                       >
                         View Profile
                       </Button>
@@ -230,7 +230,7 @@ export default function JobDetailPage() {
                 <Button className="w-full" onClick={() => router.push("/applications/add")}>
                   Add Candidate to Job
                 </Button>
-                <Button variant="outline" className="w-full" onClick={() => router.push(`/jobs/edit/${job.id}`)}>
+                <Button variant="outline" className="w-full" onClick={() => router.push(`/jobs/edit/${job._id}`)}>
                   Edit Job
                 </Button>
               </div>

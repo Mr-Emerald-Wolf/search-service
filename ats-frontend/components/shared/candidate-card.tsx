@@ -94,7 +94,7 @@ export function CandidateCard({ candidate }: CandidateCardProps) {
             <span>No date</span>
           )}
         </div>
-        <Link href={`/candidates/${candidate.id || "#"}`} passHref>
+        <Link href={`/candidates/${candidate._id || "#"}`} passHref>
           <Button size="sm" variant="outline">
             View Details
           </Button>

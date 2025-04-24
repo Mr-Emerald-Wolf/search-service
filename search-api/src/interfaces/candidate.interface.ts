@@ -1,5 +1,5 @@
 export interface CandidateInterface {
-    id?: string; 
+    _id?: string; 
     name: string;
     email: string;
     mobile: string;
