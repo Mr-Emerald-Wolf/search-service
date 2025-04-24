@@ -55,12 +55,12 @@ export function ApplicationForm({ initialData, isEditMode = false }: Application
   }, [])
 
   const candidateOptions = candidates.map((candidate) => ({
-    value: candidate.id || "",
+    value: candidate._id || "",
     label: `${candidate.name} (${candidate.email})`,
   }))
 
   const jobOptions = jobs.map((job) => ({
-    value: job.id || "",
+    value: job._id || "",
     label: `${job.title} - ${job.department} (${job.location})`,
   }))
 

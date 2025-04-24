@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { JobInterface } from "../interfaces";
+import { ApplicationInterface, JobInterface } from "../interfaces";
 import jobService from "../services/jobs.service";
 
 class JobController {
@@ -94,6 +94,24 @@ class JobController {
       res.status(200).json({
         success: true,
         data: jobs,
+      });
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  createApplication = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
+    try {
+      const applicationData: ApplicationInterface = req.body;
+      const newApplication = await jobService.createApplication(applicationData);
+
+      res.status(201).json({
+        success: true,
+        data: newApplication,
       });
     } catch (error) {
       next(error);

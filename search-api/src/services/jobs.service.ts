@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { JobInterface } from "../interfaces";
+import { ApplicationInterface, JobInterface } from "../interfaces";
 import { executeQuery } from "../client/mysql.client";
 import { addToSyncQueue } from "../utils/helper";
 import { Client } from "@elastic/elasticsearch";
@@ -321,6 +321,35 @@ const jobService = {
       );
     } catch (error) {
       console.error("Error syncing data:", error);
+      throw error;
+    }
+  },
+  async createApplication(
+    application: ApplicationInterface
+  ): Promise<ApplicationInterface> {
+    try {
+      const result = await client.update({
+        index: INDEX,
+        id: application.jobId,
+        body: {
+          script: {
+            source:
+              "if (ctx._source.candidateIds == null) { ctx._source.candidateIds = [] } ctx._source.candidateIds.add(params.candidateId)",
+            params: {
+              candidateId: application.candidateId,
+            },
+          },
+        },
+      });
+      await addToSyncQueue(
+        "insert",
+        "application",
+        application.candidateId,
+        "Job application created"
+      );
+      return application;
+    } catch (error) {
+      console.error("Error creating application:", error);
       throw error;
     }
   },

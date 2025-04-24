@@ -159,7 +159,7 @@ export const getApplication = async (id: string): Promise<ApplicationInterface |
 }
 
 export const createApplication = async (application: ApplicationInterface): Promise<ApplicationInterface> => {
-  const response = await fetch(`${API_CONFIG.baseUrl}/applications`, {
+  const response = await fetch(`${API_CONFIG.baseUrl}/jobs/applications`, {
     method: "POST",
     headers: API_CONFIG.headers,
     body: JSON.stringify(application),

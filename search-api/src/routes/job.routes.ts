@@ -6,6 +6,9 @@ const router = express.Router();
 // Route to create a new job
 router.post("/", JobController.createJob);
 
+// Route to create a new job application
+router.post("/applications", JobController.createApplication);
+
 // Route to get all jobs
 router.get("/", JobController.getJobs);
 
